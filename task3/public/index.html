@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborative Document Editor</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom styles if needed -->
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        /* Style for the textarea to ensure it fills available space */
+        textarea {
+            resize: none; /* Prevent manual resizing */
+        }
+        /* Custom scrollbar for aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e5e7eb;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #9ca3af;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-gray-800 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">AwesomeDoc Editor</h1>
+            <div class="flex items-center space-x-4">
+                <span id="connection-status" class="text-sm text-yellow-300">Connecting...</span>
+                <button id="new-document-btn" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow-md transition duration-300">
+                    New Document <i class="fas fa-file-alt ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto flex-grow p-4 md:p-8 flex flex-col items-center">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-4xl p-6 h-[70vh] flex flex-col">
+            <div class="mb-4 flex items-center justify-between">
+                <h2 class="text-xl font-semibold text-gray-800">Document ID: <span id="document-id" class="font-normal text-gray-600">Loading...</span></h2>
+                <button id="copy-id-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm px-3 py-1 rounded-md transition duration-300">
+                    <i class="fas fa-copy mr-1"></i> Copy ID
+                </button>
+            </div>
+            <textarea id="document-editor" class="flex-grow w-full border border-gray-300 rounded-md p-4 text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-lg"></textarea>
+        </div>
+
+        <!-- Notification Message Box -->
+        <div id="notification-box" class="fixed bottom-4 left-1/2 -translate-x-1/2 bg-gray-700 text-white p-3 rounded-lg shadow-lg hidden z-50 text-center">
+            </div>
+    </main>
+
+  
+    <!-- Socket.IO Client Library -->
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- Your application script -->
+    <script src="/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+/* public/style.css */
+
+/* Global styles and overrides */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    /* Font family and background are already set in index.html inline style,
+       but confirming 'Inter' is a good choice for professional feel. */
+    -webkit-font-smoothing: antialiased; /* Smoother fonts on WebKit browsers */
+    -moz-osx-font-smoothing: grayscale; /* Smoother fonts on Firefox on macOS */
+    display: flex; /* Ensure flex column layout from body to footer */
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Custom scrollbar for better aesthetics, applied globally for consistency */
+::-webkit-scrollbar {
+    width: 10px; /* Wider scrollbar for easier interaction */
+}
+
+::-webkit-scrollbar-track {
+    background: #e0e7ff; /* Lighter track, hint of blue from Tailwind's indigo */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #6366f1; /* Tailwind's indigo-500 for the thumb */
+    border-radius: 10px;
+    border: 2px solid #e0e7ff; /* Border to match track color */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4f46e5; /* Darker indigo on hover */
+}
+
+/* Specific styles for the document editor textarea */
+#document-editor {
+    /* Tailwind classes handle much of this, but we can refine */
+    font-size: 1.125rem; /* Equivalent to text-lg, ensuring good readability */
+    line-height: 1.75; /* Equivalent to leading-relaxed, better for blocks of text */
+    tab-size: 4; /* Standard tab size */
+    -moz-tab-size: 4;
+
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for focus */
+}
+
+#document-editor:focus {
+    outline: none; /* Remove default outline */
+    border-color: #818cf8; /* Tailwind's indigo-400 for a softer focus border */
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.3); /* Custom ring shadow for focus */
+}
+
+/* Styles for interactive elements (buttons) - mostly handled by Tailwind,
+   but adding subtle additional effects can enhance professionalism. */
+button {
+    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-1px); /* Slight lift on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+}
+
+button:active {
+    transform: translateY(0); /* Press effect on click */
+    box-shadow: none;
+}
+
+/* Notification Box Styling */
+#notification-box {
+    /* Positioning and basic styling are in script.js and index.html.
+       Adding more explicit styles for the pop-up nature. */
+    min-width: 250px;
+    max-width: 90%; /* Ensure it doesn't overflow on small screens */
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 9999px; /* Fully rounded/pill shape */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More prominent shadow */
+    opacity: 0; /* Hidden by default */
+    transform: translate(-50%, 20px) scale(0.95); /* Start slightly below and smaller */
+    transition: all 0.3s ease-out; /* Smooth entrance/exit */
+}
+
+/* When the notification box is shown by JS */
+#notification-box:not(.hidden) {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1); /* Move to position and scale up */
+}
+
+
+/* Specific styles for the connection status indicator */
+#connection-status {
+    transition: color 0.3s ease; /* Smooth transition for color changes */
+    font-weight: 600; /* Make it a bit bolder */
+}
+
+/* Adjust header/footer text sizing for better responsiveness if needed (Tailwind handles this well) */
+@media (max-width: 640px) {
+    .text-2xl {
+        font-size: 1.5rem; /* Smaller heading on mobile */
+    }
+    .text-xl {
+        font-size: 1.15rem; /* Smaller sub-heading on mobile */
+    }
+}
